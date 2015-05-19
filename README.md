@@ -1,6 +1,6 @@
 # MapNodeProcess4Timestamping
 ## How to use it?
-1. Put the classifier (.model file) into the folder (projectPath/models/)
+1. Put the [classifier](https://www.dropbox.com/s/k9llbp5dea4zgzp/RF5classesOnlyWithChanges.model?dl=0) into the folder (projectPath/models/)
 
 2. mvn compile
 
