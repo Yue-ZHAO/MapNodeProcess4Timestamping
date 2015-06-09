@@ -1,6 +1,6 @@
 # MapNodeProcess4Timestamping
 ## How to use it?
-// 1. Put the [classifier](https://www.dropbox.com/s/k9llbp5dea4zgzp/RF5classesOnlyWithChanges.model?dl=0) into the folder (projectPath/models/)
+~~1. Put the [classifier](https://www.dropbox.com/s/k9llbp5dea4zgzp/RF5classesOnlyWithChanges.model?dl=0) into the folder (projectPath/models/).~~
 
 1. mvn compile
 
@@ -14,13 +14,14 @@
 2. remove the feature extraction of explicit temporal expressions. To extract features of explicit temporal expressions needs to run the NLP pipeline twice, which only add some sparse features. 
 
 ## Example
-    ```Java
+
+    ```java
     package yue.temporal.MapProcess;
     
     import java.io.File;
     import java.nio.charset.StandardCharsets;
     import java.util.List;
-
+    
     import yue.temporal.MapProcess.CluewebPage;
     import yue.temporal.MapProcess.FeatureExtraction4MR;
     import yue.temporal.MapProcess.ParagraphWithFeatures;
