@@ -3,16 +3,16 @@ package yue.temporal.MapProcess;
 public class Paragraph {
 
 	//	the start position of the paragraph
-	private int startPoint;
+	private int startPoint = -1;
 	
 	//	the end position of the paragraph
-	private int endPoint;
+	private int endPoint = -1;
 	
 	//	the content
-	private String content;
+	private String content = "";
 	
 	//	the time stamp
-	private String timestamp;
+	private String timestamp = "";
 	
 	public String featureToString() {
 		String feature = getStartPoint() + " " + getEndPoint() + " " + getTimestamp();

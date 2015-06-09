@@ -20,9 +20,9 @@ public class CluewebPage extends Page {
 	//	implement the Class Paragraph
 	public List<Paragraph> paragraphs = new ArrayList<Paragraph>();
 	
-	public int threshold_length = 0;
+	public int threshold_length = 50;
 	
-	public double threshold_similarity = 0;
+	public double threshold_similarity = 0.7;
 	
 	public CluewebPage(String cluewebFileContent, int lenThreshold, double simThreshold) throws NoSuchAlgorithmException, IOException {
 		
@@ -50,7 +50,8 @@ public class CluewebPage extends Page {
 				paragraph.setContent(p_FromHTML);
 				paragraph.setStartPoint(startPos);
 				paragraph.setEndPoint(startPos + p_FromHTML.length() - 1);
-				paragraph.setTimestamp(timestamp);
+				//	For a clueweb page, we do not know the creation time of its paragraphs 
+				//	when we extract info from the clueweb page file. 
 				paragraphs.add(paragraph);
 			}
 		}
@@ -61,10 +62,6 @@ public class CluewebPage extends Page {
 	
 	
 	public CluewebPage(File file_Page, int lenThreshold, double simThreshold) throws NoSuchAlgorithmException, IOException {
-		pageInit(file_Page, lenThreshold, simThreshold);
-	}
-	
-	private void pageInit(File file_Page, int lenThreshold, double simThreshold) throws NoSuchAlgorithmException, IOException {
 		
 		String urlString = CluewebFileProcess.readURLFromCluewebFile(file_Page);
 		String timestamp = CluewebFileProcess.readTimeFromCluewebFile(file_Page);
@@ -89,7 +86,8 @@ public class CluewebPage extends Page {
 				paragraph.setContent(p_FromHTML);
 				paragraph.setStartPoint(startPos);
 				paragraph.setEndPoint(startPos + p_FromHTML.length() - 1);
-				paragraph.setTimestamp(timestamp);
+				//	For a clueweb page, we do not know the creation time of its paragraphs 
+				//	when we extract info from the clueweb page file. 
 				paragraphs.add(paragraph);
 			}
 		}

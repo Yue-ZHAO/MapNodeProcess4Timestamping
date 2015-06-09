@@ -4,7 +4,7 @@
 
   <groupId>yue.temporal</groupId>
   <artifactId>MapProcess</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>MapProcess</name>
@@ -42,10 +42,10 @@
         <directory>sutimeRules/</directory>
       </resource>
       
-      <resource>
+<!--       <resource>
         <targetPath>models/</targetPath>
         <directory>models/</directory>
-      </resource>
+      </resource> -->
       
     </resources>    
   </build>
@@ -100,11 +100,11 @@
       <classifier>models</classifier>
 	</dependency>
 	
-	<dependency>
+<!-- 	<dependency>
 	  <groupId>nz.ac.waikato.cms.weka</groupId>
 	  <artifactId>weka-stable</artifactId>
 	  <version>3.6.12</version>
-	</dependency>
+	</dependency> -->
 	
   </dependencies>
 </project>
