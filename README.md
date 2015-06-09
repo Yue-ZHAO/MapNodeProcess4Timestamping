@@ -36,19 +36,22 @@
 			    resultFolder.mkdir();
 		    File srcFolder = new File(srcFolderPath);
 		    File[] srcFileList = srcFolder.listFiles();
-	    	System.out.println(srcFileList.length);
+	    	
 	    	//  - Initialize the feature extractor (including the initialization of Stanford coreNLP pipeline)
 		    FeatureExtraction4MR featureExtractor = new FeatureExtraction4MR();		
 		    for(File srcFile: srcFileList) {		
+			   
 			    //  Step 2: content extraction -> doc info and paragraph pos
 				File resultFile = new File(resultFolder, srcFile.getName());
 			    String content = FileProcess.readFile(srcFile.getAbsolutePath(), StandardCharsets.UTF_8);
 			    //  - Initialize a clueweb page by reading the string of the contents (string, length threshold, similarity threshold)
 			    CluewebPage cluewebPage = new CluewebPage(content, 50, 0.7);
+			    
 			    //  Step 3: generate features of paragraph
 			    //  - ParagraphWithFeatures include the paragraph (start position, end position, content)
 			    //    and the features of the paragraph
 			    List<ParagraphWithFeatures> paragraphWithFeatures = featureExtractor.extract(cluewebPage);
+			    
 			    //  Step 4: Output features
 			    if (paragraphWithFeatures == null)
 				    continue;
