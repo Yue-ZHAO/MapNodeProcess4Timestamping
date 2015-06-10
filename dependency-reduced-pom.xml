@@ -4,7 +4,7 @@
   <groupId>yue.temporal</groupId>
   <artifactId>MapProcess</artifactId>
   <name>MapProcess</name>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.2.1-SNAPSHOT</version>
   <url>http://maven.apache.org</url>
   <build>
     <resources>

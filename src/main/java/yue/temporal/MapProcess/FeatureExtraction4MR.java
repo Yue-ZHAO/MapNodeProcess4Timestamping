@@ -37,7 +37,8 @@ public class FeatureExtraction4MR {
 	public FeatureExtraction4MR () throws Exception {
 		
 		Properties props = new Properties();
-		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, sutime");        
+		//	props.put("annotators", "tokenize, ssplit, pos, lemma, ner, sutime");
+		props.put("annotators", "tokenize, ssplit, pos, sutime"); 
 		props.put("customAnnotatorClass.sutime", "edu.stanford.nlp.time.TimeAnnotator");
 		props.put("sutime.rules", "sutimeRules/defs.sutime.txt, sutimeRules/english.sutime.txt");
 		pipeline = new StanfordCoreNLP(props);
@@ -524,6 +525,7 @@ public class FeatureExtraction4MR {
 				else
 					paragraphFeature.lenDistLongTEs = (double)(paragraphFeature.lenAbs - formerTimeEndPos) / paragraphFeature.lenAbs;
 			}
+			
 			
 			//	23 - 28 the number of different types of verbs
 			//	POS Tokens
