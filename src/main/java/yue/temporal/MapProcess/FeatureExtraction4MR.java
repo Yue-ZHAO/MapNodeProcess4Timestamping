@@ -20,6 +20,7 @@ import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.time.TimeAnnotations;
+import edu.stanford.nlp.time.TimeAnnotator;
 import edu.stanford.nlp.time.TimeExpression;
 import edu.stanford.nlp.util.CoreMap;
 //import weka.core.Attribute;
@@ -34,15 +35,26 @@ public class FeatureExtraction4MR {
 //	static FastVector attributes = new FastVector();
 //	static Classifier cls;
 	
-	public FeatureExtraction4MR () throws Exception {
-		
+	public FeatureExtraction4MR () {		
+		/*
 		Properties props = new Properties();
 		//	props.put("annotators", "tokenize, ssplit, pos, lemma, ner, sutime");
 		props.put("annotators", "tokenize, ssplit, pos, sutime"); 
 		props.put("customAnnotatorClass.sutime", "edu.stanford.nlp.time.TimeAnnotator");
-		props.put("sutime.rules", "sutimeRules/defs.sutime.txt, sutimeRules/english.sutime.txt");
+		props.put("sutime.rules", "sutimeRules/defs.sutime.txt, sutimeRules/english.sutime.txt, sutimeRules/english.holidays.sutime.txt");
 		pipeline = new StanfordCoreNLP(props);
+		*/
 		
+	    Properties props = new Properties();
+	    //  props.put("annotators", "tokenize, ssplit, pos, lemma, ner, sutime");
+	    props.put("annotators", "tokenize, ssplit, pos"); 
+	    //props.put("pos.model", "tagger");
+	    pipeline = new StanfordCoreNLP(props);      	    
+	    String[] sutimeRules = { "sutimeRules/defs.sutime.txt", "sutimeRules/english.holidays.sutime.txt", "sutimeRules/english.sutime.txt" };
+	    props.setProperty("sutime.rules",
+	        org.apache.commons.lang3.StringUtils.join(sutimeRules, ","));
+	    props.setProperty("sutime.binders", "0");
+	    pipeline.addAnnotator(new TimeAnnotator("sutime", props));
 		// load model
 //		InputStream isModelFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("models/RF5classesOnlyWithChanges.model");
 //		cls = (Classifier) weka.core.SerializationHelper.read(isModelFile);		
@@ -108,8 +120,7 @@ public class FeatureExtraction4MR {
 	
 	}
 
-	public static void main(String[] args) throws Exception {
-
+	public static void main(String[] args) {
 		//	Step 1: read clueweb 12 files
 		String srcFilePath = args[0];
 		File srcFile = new File(srcFilePath);
@@ -130,13 +141,13 @@ public class FeatureExtraction4MR {
 		
 		
 		//	Step 4: put feature into the model -> DocID; String; Time
-//			List<ParagraphPrediction> predictionResult = featureExtractor.timePredictor(srcFile);
+		//	List<ParagraphPrediction> predictionResult = featureExtractor.timePredictor(srcFile);
 		
 		//	Step 5: Output features
-//		for (ParagraphPrediction pp: predictionResult) {
-//			// implement toString()
-//			System.out.println(pp.toString());
-//		}		
+		//	for (ParagraphPrediction pp: predictionResult) {
+			// implement toString()
+			//	System.out.println(pp.toString());
+		//	}		
 	}
 
 	/*
@@ -282,9 +293,8 @@ public class FeatureExtraction4MR {
 		return paragraphPredictionList;
 	} */
 
-	public List<ParagraphWithFeatures> extract(CluewebPage cluewebPage) {
-		
-		if (cluewebPage.paragraphs.isEmpty())
+	public List<ParagraphWithFeatures> extract(CluewebPage cluewebPage) {		
+		if (cluewebPage.paragraphs.isEmpty() || cluewebPage.paragraphs==null)
 			return null;
 		
 		//	Initialize the list of (paragraph + features)
@@ -633,8 +643,7 @@ public class FeatureExtraction4MR {
 			paragraphWithFeatures.features = paragraphFeature;
 			paragraphWithFeaturesList.add(paragraphWithFeatures);
 		}
-		//	--------- End the Procedure for each paragraph ---------
-		
+		//	--------- End the Procedure for each paragraph ---------		
 		return paragraphWithFeaturesList;
 	}
 

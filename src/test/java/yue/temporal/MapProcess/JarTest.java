@@ -1,5 +1,6 @@
 package yue.temporal.MapProcess;
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import yue.temporal.Utils.FileProcess;
 
 public class JarTest {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IOException {
 		
 		//	Step 1: read clueweb 12 files
 		String srcFolderPath = args[0];
@@ -61,7 +62,7 @@ public class JarTest {
 //				// implement toString()
 //				FileProcess.addLinetoaFile(pwf.paragraph.getContent(), resultFile.getAbsolutePath());
 //				FileProcess.addLinetoaFile(pwf.features.featuresToString(), resultFile.getAbsolutePath());
-				System.out.println(pwf.paragraph.getContent());
+//				System.out.println(pwf.paragraph.getContent());
 				System.out.println(pwf.features.featuresToString());
 			}
 			long endtime = System.currentTimeMillis();

@@ -2,13 +2,19 @@
 ## How to use it?
 ~~1. Put the [classifier](https://www.dropbox.com/s/k9llbp5dea4zgzp/RF5classesOnlyWithChanges.model?dl=0) into the folder (projectPath/models/).~~
 
-1. mvn compile
+1. Compile
+    mvn compile
 
-2. mvn clean package -Dmaven.test.skip=true
+2. Package
+    mvn clean package -Dmaven.test.skip=true
 
 3. use the jar in target folder as a referenced library in your code.
 
 ## Update
+
+### Ver 0.2.2
+1. Add exception processing  
+If there is any exception when a Clueweb class is constructed, the list of paragraphs in the Clueweb class will be null.
 
 ### Ver 0.2.1
 1. Remove lemma and NER from stanford coreNLP to accelerate the pipeline.
