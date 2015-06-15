@@ -1,4 +1,4 @@
-# MapNodeProcess4Timestamping
+# Map Node Processing for Feature Extraction
 ## How to use it?
 ~~1. Put the [classifier](https://www.dropbox.com/s/k9llbp5dea4zgzp/RF5classesOnlyWithChanges.model?dl=0) into the folder (projectPath/models/).~~
 
