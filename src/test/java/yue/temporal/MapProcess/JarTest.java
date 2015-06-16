@@ -36,7 +36,7 @@ public class JarTest {
 			//	Step 3: generate features of paragraph
 			//	Step 4: put feature into the model -> DocID; String; Time
 			System.out.println(srcFile.getName());
-//			File resultFile = new File(resultFolder, srcFile.getName());
+			//	File resultFile = new File(resultFolder, srcFile.getName());
 			String content = FileProcess.readFile(srcFile.getAbsolutePath(), StandardCharsets.UTF_8);
 			CluewebPage cluewebPage = new CluewebPage(content, 50, 0.7);
 			long timestamp1 = System.currentTimeMillis();

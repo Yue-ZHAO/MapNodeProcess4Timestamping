@@ -24,11 +24,12 @@ public class CluewebPage extends Page {
 	
 	public double threshold_similarity = 0.7;
 	
-	public CluewebPage(String cluewebFileContent, int lenThreshold, double simThreshold) {		
+	public CluewebPage(String cluewebFileContent, int lenThreshold, double simThreshold) {				
+		String trecID = "";
 		try {
+			trecID = CluewebFileProcess.readTrecIDFromCluewebFileString(cluewebFileContent);			
 			String urlString = CluewebFileProcess.readURLFromCluewebFileString(cluewebFileContent);
 			String timestamp = CluewebFileProcess.readTimeFromCluewebFileString(cluewebFileContent);
-			String trecID = CluewebFileProcess.readTrecIDFromCluewebFileString(cluewebFileContent);
 		
 			this.URL = urlString;
 			this.currentTimestamp = timestamp;
@@ -57,6 +58,7 @@ public class CluewebPage extends Page {
 			}
 			this.num_Paragraphs = paragraphs.size();
 		} catch (Exception e) {
+			FileProcess.addLinetoaFile("File: " + trecID + "\n" + "Exception: " + e, "ExceptionRecord4FeatureExtraction");
 			paragraphs = null;
 		}
 	}
@@ -95,6 +97,7 @@ public class CluewebPage extends Page {
 			}		
 			this.num_Paragraphs = paragraphs.size();
 		} catch (Exception e) {
+			FileProcess.addLinetoaFile("File: " + file_Page.getName() + "\n" + "Exception: " + e, "ExceptionRecord4FeatureExtraction");
 			paragraphs = null;
 		}
 	}
