@@ -312,9 +312,7 @@ public class FeatureExtraction4MR {
 						paragraphFeature.lenDistLongTEs = (double)lenDistLongTEs / paragraphFeature.lenAbs;
 					else
 						paragraphFeature.lenDistLongTEs = (double)(paragraphFeature.lenAbs - formerTimeEndPos) / paragraphFeature.lenAbs;
-				}
-				
-				
+				}	
 				//	23 - 28 the number of different types of verbs
 				//	POS Tokens
 	        	for (CoreLabel token: document.get(TokensAnnotation.class)) {
